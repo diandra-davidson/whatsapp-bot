@@ -6,11 +6,11 @@ app = Flask(__name__)
 
 @app.route("/sms", methods=['GET', 'POST'])
 def sms_reply():
-    """Respond to incoming calls with a simple text message."""
+    """Respond to WhatsApp message with Google Search results.
+    i.e. 'Search: dog groomers near me'"""
     body = request.values.get('Body', None)
     # Start our TwiML response
     resp = MessagingResponse()
-    # Add a message
     if 'search' in str(body).lower():
         query = str(body).split(":", 1)[1].strip(" ")
         resp.message(f"-- Top 5 Results for '{query}' --")
